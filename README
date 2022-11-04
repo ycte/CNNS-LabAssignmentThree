@@ -1,0 +1,34 @@
+Assign 3 的所有程序一共分7个文件夹存放, 文件夹中含有 Intelij 的 out 和 .idea 文件夹，可直接打开工程：
+* HTTP/：Simple Client
+	运行：java SHTTPTestClient -server <server> -servname <server name> -port <server port> -parallel <# of threads> -files <file name> -T <time of test in seconds>
+	如：
+文件树形结构
+
+
+* SequentialAndPer-threadHTTPServers/：顺序和 Per request thread 服务
+	Sequential server 运行：java BasicWebServer -config httpd.conf
+	Per request thread server 运行：java PerThreadWebServer -config httpd.conf
+文件树形结构
+
+
+
+* Concurrent-HTTP-Servers-using-Threads/ShareWelcome/：thread pool with service threads competing on welcome socket
+	运行： java Server -config httpd.conf
+文件树形结构
+
+
+* Concurrent-HTTP-Servers-using-Threads/WaitNotify/： thread pool with a shared queue and busy wait
+	运行： java Server -config httpd.conf
+文件树形结构
+
+
+* Async-Server-Multiplexed-Nonblocking-Server (Reactive Server)/SelectEchoServer/：Part 2b (Option 1)
+	运行： java Server -config httpd.conf
+文件树形结构
+
+
+
+* report.pdf：报告
+
+
+* README: 本文件
