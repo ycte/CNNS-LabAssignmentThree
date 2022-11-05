@@ -52,3 +52,62 @@ achieve synchronization:
 
 * Instead of using ByteBuffer, Netty introduces a data structure called ByteBuf. Please give one key difference between ByteBuffer and ByteBuf.
 
+```
+	ByteBuf 没有 flip() 方法,不会因为没有调用flip方法而引起没有数据或者错误数据被发送。因为ByteBuf 有两个指针，一个对应读操作一个对应写操作，向ByteBuf里写入数据的时候写指针的索引就会增加，同时读指针的索引没有变化。而读指针索引和写指针索引分别代表了消息的开始和结束，即写完可以直接从读指针开始读取到写指针结束。
+```
+
+
+
+* A major novel, interesting feature of Netty which we did not cover in class is ChannelPipeline. A pipeline may consist of a list of ChannelHander. Compare HTTP Hello World Server and HTTP Snoop Server, what are the handlers that each includes?
+
+```
+HTTP Hello World Server 处理 handler 的代码：
+@Override
+33      public void initChannel(SocketChannel ch) {
+34          ChannelPipeline p = ch.pipeline();
+35          if (sslCtx != null) {
+36              p.addLast(sslCtx.newHandler(ch.alloc()));
+37          }
+38          p.addLast(new HttpServerCodec());
+39          p.addLast(new HttpHelloWorldServerHandler());
+40      }
+
+可以看出，使用了：
+HttpServerCodec()：来自 io.netty.handler.codec.http.HttpServerCodec，A combination of HttpRequestDecoder and HttpResponseEncoder which enables easier server side HTTP implementation.
+HttpHelloWorldServerHandler()：Server 内的一个类，里面含有一个方法channelRead(ChannelHandlerContext ctx, Object msg) 用来处理 response。
+```
+
+```
+HTTP Snoop Server 处理 handler 的代码：
+33      @Override
+34      public void initChannel(SocketChannel ch) {
+35          ChannelPipeline p = ch.pipeline();
+36          if (sslCtx != null) {
+37              p.addLast(sslCtx.newHandler(ch.alloc()));
+38          }
+39          p.addLast(new HttpRequestDecoder());
+40          
+41          //p.addLast(new HttpObjectAggregator(1048576));
+42          p.addLast(new HttpResponseEncoder());
+43          
+44          //p.addLast(new HttpContentCompressor());
+45          p.addLast(new HttpSnoopServerHandler());
+46      }
+可以看出，使用了：
+HttpRequestDecoder()，new HttpResponseEncoder()：与上面类似，处理请求和回复
+HttpSnoopServerHandler()：同样为 Server 内的一个类，含有检测读取是否完成，编解码和检查结果等方法
+```
+
+```
+Compare:
+	从 HTTP Snoop Server 的名字就可以看出来，它相比与 Hello World Server 多了监听 Client 状态的功能，在 handler 的 channelReadComplete(ChannelHandlerContext ctx) 等方法中也体现了这一特点。
+```
+
+
+
+* Please scan Netty implementation and give a high-level description of how ChannelPipeline is implemented.
+
+```
+	忽略掉最初始的设计，ChannelPipeline 的实现从一个线程开始。当一个线程被分配时，可以对线程中的 pipeline 分配空间并添加 handler，代码如上一题。而当 pipeline 被 connect 时，里面的 handler 按照 List 的顺序执行从而实现信息处理。pipeline 处理结束后交由线程调节。boss group and worker group 进行同步处理。
+```
+
