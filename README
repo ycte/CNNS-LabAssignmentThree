@@ -1,32 +1,412 @@
 Assign 3 的所有程序一共分7个文件夹存放, 文件夹中含有 Intelij 的 out 和 .idea 文件夹，可直接打开工程：
-* HTTP/：Simple Client
+* Client/HTTP：Simple Client
 	运行：java SHTTPTestClient -server <server> -servname <server name> -port <server port> -parallel <# of threads> -files <file name> -T <time of test in seconds>
-	如：
+	如：java SHTTPTestClient -server 192.168.178.131 -servname 192.168.178.131 -port 6789 -parallel 3 -files cgi/price.cgi?/appl/ index.html file1.html -T 3
+* Client/HTTP：适用于 selector 服务器的 Simple Client
+	运行：java SHTTPTestClient -server <server> -servname <server name> -port <server port> -parallel <# of threads> -files <file name> -T <time of test in seconds>
+	如：java SHTTPTestClient -server 192.168.178.131 -servname 192.168.178.131 -port 6789 -parallel 3 -files cgi/price.cgi?/appl/ index.html file1.html -T 3
 文件树形结构
+.
+├── HTTP
+│   ├── HTTP.iml
+│   ├── out
+│   │   └── production
+│   │       └── HTTP
+│   │           ├── BasicClient.class
+│   │           ├── HTTPServer.class
+│   │           ├── SHTTPTestClient.class
+│   │           ├── SHTTPTestThread.class
+│   │           ├── SHTTPTestThread.java.baiduyun.uploading.cfg
+│   │           ├── WasteCode
+│   │           │   ├── Server.class
+│   │           │   └── ServiceThread.class
+│   │           └── WebRequestHandler.class
+│   └── src
+│       ├── BasicClient.java
+│       ├── HTTPServer.java
+│       ├── SHTTPTestClient.java
+│       ├── SHTTPTestThread.java
+│       ├── WasteCode
+│       │   ├── Server.java
+│       │   └── ServiceThread.java
+│       └── WebRequestHandler.java
+└── HTTPMore
+    ├── HTTP.iml
+    ├── out
+    │   └── production
+    │       └── HTTP
+    │           ├── BasicClient.class
+    │           ├── HTTPServer.class
+    │           ├── SHTTPTestClient.class
+    │           ├── SHTTPTestThread.class
+    │           ├── WasteCode
+    │           │   ├── Server.class
+    │           │   └── ServiceThread.class
+    │           └── WebRequestHandler.class
+    └── src
+        ├── BasicClient.java
+        ├── HTTPServer.java
+        ├── SHTTPTestClient.java
+        ├── SHTTPTestThread.java
+        ├── WasteCode
+        │   ├── Server.java
+        │   └── ServiceThread.java
+        └── WebRequestHandler.java
 
 
-* SequentialAndPer-threadHTTPServers/：顺序和 Per request thread 服务
+* SequentialAndPer-threadHTTPServers：顺序和 Per request thread 服务
 	Sequential server 运行：java BasicWebServer -config httpd.conf
 	Per request thread server 运行：java PerThreadWebServer -config httpd.conf
 文件树形结构
-
-
+.
+├── BasicWebServer.iml
+├── BasicWebServer.java
+├── cgi
+│   ├── ajax.html
+│   ├── config
+│   │   ├── apache-htaccess
+│   │   └── index.md
+│   ├── index.md
+│   ├── price.cgi
+│   ├── price.cgi.html
+│   └── price-raw.cgi
+├── cgiOutput
+├── favicon.ico
+├── file1.html
+├── FileTest.java
+├── HeartbeatMonitor.java
+├── httpd.conf
+├── index.html
+├── index_m.html
+├── jnp3rd.jpg
+├── out
+│   └── production
+│       └── BasicWebServer
+│           ├── BasicWebServer.class
+│           ├── BasicWebServer.iml
+│           ├── cgi
+│           │   ├── ajax.html
+│           │   ├── config
+│           │   │   ├── apache-htaccess
+│           │   │   └── index.md
+│           │   ├── index.md
+│           │   ├── price.cgi
+│           │   ├── price.cgi.html
+│           │   └── price-raw.cgi
+│           ├── cgiOutput
+│           ├── favicon.ico
+│           ├── file1.html
+│           ├── FileTest.class
+│           ├── HeartbeatMonitor.class
+│           ├── httpd.conf
+│           ├── index.html
+│           ├── index_m.html
+│           ├── jnp3rd.jpg
+│           ├── PerThreadWebServer.class
+│           ├── README.md
+│           ├── ServiceThread.class
+│           ├── tree
+│           ├── WasteCode
+│           │   ├── CNNS-LabAssignmentThree
+│           │   │   └── report.md
+│           │   ├── GETTest.class
+│           │   ├── MapTest.class
+│           │   ├── ProcessBuilderTest.class
+│           │   └── TimerTest.class
+│           ├── WebRequestHandler.class
+│           └── WebRequestHandlerThread.class
+├── PerThreadWebServer.java
+├── README.md
+├── ServiceThread.java
+├── tree
+├── WasteCode
+│   ├── CNNS-LabAssignmentThree
+│   │   └── report.md
+│   ├── GETTest.java
+│   ├── MapTest.java
+│   ├── ProcessBuilderTest.java
+│   └── TimerTest.java
+├── WebRequestHandler.java
+└── WebRequestHandlerThread.java
 
 * Concurrent-HTTP-Servers-using-Threads/ShareWelcome/：thread pool with service threads competing on welcome socket
 	运行： java Server -config httpd.conf
 文件树形结构
-
+.
+├── cgi
+│   ├── ajax.html
+│   ├── config
+│   │   ├── apache-htaccess
+│   │   └── index.md
+│   ├── index.md
+│   ├── price.cgi
+│   ├── price.cgi.html
+│   └── price-raw.cgi
+├── favicon.ico
+├── file1.html
+├── FileTest.java
+├── GETTest.java
+├── httpd.conf
+├── index.html
+├── index.md
+├── jnp3rd.jpg
+├── MapTest.java
+├── out
+│   └── production
+│       ├── BasicWebServer
+│       │   ├── BasicWebServer.class
+│       │   ├── BasicWebServer.iml
+│       │   ├── cgi
+│       │   │   ├── ajax.html
+│       │   │   ├── config
+│       │   │   │   ├── apache-htaccess
+│       │   │   │   └── index.md
+│       │   │   ├── index.md
+│       │   │   ├── price.cgi
+│       │   │   ├── price.cgi.html
+│       │   │   └── price-raw.cgi
+│       │   ├── dyn
+│       │   │   ├── ajax.html
+│       │   │   ├── hello
+│       │   │   ├── index.md
+│       │   │   └── price
+│       │   ├── favicon.ico
+│       │   ├── file1.html
+│       │   ├── FileTest.class
+│       │   ├── GETTest.class
+│       │   ├── httpd.conf
+│       │   ├── index.html
+│       │   ├── index.md
+│       │   ├── jnp3rd.jpg
+│       │   ├── MapTest.class
+│       │   ├── nc
+│       │   │   ├── http-get.in
+│       │   │   ├── http-post.in
+│       │   │   ├── http-wiki-get.in
+│       │   │   └── index.md
+│       │   ├── Server.class
+│       │   ├── ServiceThread.class
+│       │   ├── ssi
+│       │   │   ├── config
+│       │   │   │   ├── apache-htaccess
+│       │   │   │   └── index.md
+│       │   │   ├── course_info.shtml
+│       │   │   ├── header.shtml
+│       │   │   ├── index.md
+│       │   │   ├── index.shtml
+│       │   │   └── yry_class_style.css
+│       │   ├── TimerTest.class
+│       │   └── WebRequestHandler.class
+│       └── ShareWelcome
+│           ├── cgi
+│           │   ├── ajax.html
+│           │   ├── config
+│           │   │   ├── apache-htaccess
+│           │   │   └── index.md
+│           │   ├── index.md
+│           │   ├── price.cgi
+│           │   ├── price.cgi.html
+│           │   └── price-raw.cgi
+│           ├── favicon.ico
+│           ├── file1.html
+│           ├── FileTest.class
+│           ├── GETTest.class
+│           ├── httpd.conf
+│           ├── index.html
+│           ├── index.md
+│           ├── jnp3rd.jpg
+│           ├── MapTest.class
+│           ├── Server.class
+│           ├── ServerShareWelcome.iml
+│           ├── ServiceThread.class
+│           ├── ShareWelcome.iml
+│           ├── TimerTest.class
+│           └── WebRequestHandler.class
+├── Server.java
+├── ServerShareWelcome.iml
+├── ServiceThread.java
+├── ShareWelcome.iml
+├── TimerTest.java
+├── WasteCode
+└── WebRequestHandler.java
 
 * Concurrent-HTTP-Servers-using-Threads/WaitNotify/： thread pool with a shared queue and busy wait
 	运行： java Server -config httpd.conf
 文件树形结构
+.
+├── cgi
+│   ├── ajax.html
+│   ├── config
+│   │   ├── apache-htaccess
+│   │   └── index.md
+│   ├── index.md
+│   ├── price.cgi
+│   ├── price.cgi.html
+│   └── price-raw.cgi
+├── favicon.ico
+├── file1.html
+├── FileTest.java
+├── GETTest.java
+├── httpd.conf
+├── index.html
+├── index.md
+├── jnp3rd.jpg
+├── MapTest.java
+├── out
+│   └── production
+│       ├── BasicWebServer
+│       │   ├── BasicWebServer.class
+│       │   ├── BasicWebServer.iml
+│       │   ├── cgi
+│       │   │   ├── ajax.html
+│       │   │   ├── config
+│       │   │   │   ├── apache-htaccess
+│       │   │   │   └── index.md
+│       │   │   ├── index.md
+│       │   │   ├── price.cgi
+│       │   │   ├── price.cgi.html
+│       │   │   └── price-raw.cgi
+│       │   ├── dyn
+│       │   │   ├── ajax.html
+│       │   │   ├── hello
+│       │   │   ├── index.md
+│       │   │   └── price
+│       │   ├── favicon.ico
+│       │   ├── file1.html
+│       │   ├── FileTest.class
+│       │   ├── GETTest.class
+│       │   ├── httpd.conf
+│       │   ├── index.html
+│       │   ├── index.md
+│       │   ├── jnp3rd.jpg
+│       │   ├── MapTest.class
+│       │   ├── nc
+│       │   │   ├── http-get.in
+│       │   │   ├── http-post.in
+│       │   │   ├── http-wiki-get.in
+│       │   │   └── index.md
+│       │   ├── Server.class
+│       │   ├── ServiceThread.class
+│       │   ├── ssi
+│       │   │   ├── config
+│       │   │   │   ├── apache-htaccess
+│       │   │   │   └── index.md
+│       │   │   ├── course_info.shtml
+│       │   │   ├── header.shtml
+│       │   │   ├── index.md
+│       │   │   ├── index.shtml
+│       │   │   └── yry_class_style.css
+│       │   ├── TimerTest.class
+│       │   └── WebRequestHandler.class
+│       └── WaitNotify
+│           ├── cgi
+│           │   ├── ajax.html
+│           │   ├── config
+│           │   │   ├── apache-htaccess
+│           │   │   └── index.md
+│           │   ├── index.md
+│           │   ├── price.cgi
+│           │   ├── price.cgi.html
+│           │   └── price-raw.cgi
+│           ├── favicon.ico
+│           ├── file1.html
+│           ├── FileTest.class
+│           ├── GETTest.class
+│           ├── httpd.conf
+│           ├── index.html
+│           ├── index.md
+│           ├── jnp3rd.jpg
+│           ├── MapTest.class
+│           ├── Server.class
+│           ├── ServiceThread.class
+│           ├── TimerTest.class
+│           ├── WaitNotify.iml
+│           └── WebRequestHandler.class
+├── Server.java
+├── ServiceThread.java
+├── TimerTest.java
+├── WaitNotify.iml
+└── WebRequestHandler.java
 
 
 * Async-Server-Multiplexed-Nonblocking-Server (Reactive Server)/SelectEchoServer/：Part 2b (Option 1)
 	运行： java Server -config httpd.conf
 文件树形结构
-
-
+.
+├── cgi
+│   ├── ajax.html
+│   ├── config
+│   │   ├── apache-htaccess
+│   │   └── index.md
+│   ├── index.md
+│   ├── price.cgi
+│   ├── price.cgi.html
+│   └── price-raw.cgi
+├── cgiOutput
+├── DavidCopperfield.txt
+├── dyn
+│   ├── ajax.html
+│   ├── hello
+│   ├── index.md
+│   └── price
+├── favicon.ico
+├── file1.html
+├── httpd.conf
+├── index.html
+├── index.md
+├── jnp3rd.jpg
+├── nc
+│   ├── http-get.in
+│   ├── http-post.in
+│   ├── http-wiki-get.in
+│   └── index.md
+├── out
+│   └── production
+│       └── SelectEchoServer
+│           ├── Acceptor.class
+│           ├── BasicWebServer.iml
+│           ├── Debug.class
+│           ├── Dispatcher.class
+│           ├── EchoLineReadWriteHandler.class
+│           ├── EchoLineReadWriteHandlerFactory.class
+│           ├── EchoServer.class
+│           ├── FileTest.class
+│           ├── GETTest.class
+│           ├── IAcceptHandler.class
+│           ├── IChannelHandler.class
+│           ├── index.md
+│           ├── IReadWriteHandler.class
+│           ├── ISocketReadWriteHandlerFactory.class
+│           ├── Server.class
+│           ├── WebRequestHandler.class
+│           └── WebRequestHandlerString.class
+├── SelectEchoServer.iml
+├── ssi
+│   ├── config
+│   │   ├── apache-htaccess
+│   │   └── index.md
+│   ├── course_info.shtml
+│   ├── header.shtml
+│   ├── index.md
+│   ├── index.shtml
+│   └── yry_class_style.css
+└── v3
+    ├── Acceptor.java
+    ├── BasicWebServer.iml
+    ├── Debug.java
+    ├── Dispatcher.java
+    ├── EchoLineReadWriteHandlerFactory.java
+    ├── EchoLineReadWriteHandler.java
+    ├── FileTest.java
+    ├── GETTest.java
+    ├── IAcceptHandler.java
+    ├── IChannelHandler.java
+    ├── index.md
+    ├── IReadWriteHandler.java
+    ├── ISocketReadWriteHandlerFactory.java
+    ├── Server.java
+    ├── WebRequestHandler.java
+    └── WebRequestHandlerString.java
 
 * report.pdf：报告
 
