@@ -1,3 +1,4 @@
+# 计算机网络与安全课程作业 3 提交版的文件结构和运行说明
 Assign 3 的所有程序一共分7个文件夹存放, 文件夹中含有 Intelij 的 out 和 .idea 文件夹，可直接打开工程：
 * Client/HTTP：Simple Client
 	运行：java SHTTPTestClient -server <server> -servname <server name> -port <server port> -parallel <# of threads> -files <file name> -T <time of test in seconds>
